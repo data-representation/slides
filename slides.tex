@@ -1,15 +1,14 @@
-\documentclass[]{beamer}
+\documentclass[usenames,dvipsnames]{beamer}
 %\documentclass[handout,12pt]{beamer}
 
 \usepackage{color}
-\usepackage{colortbl}
 \usepackage{minted}
 \usepackage[utf8]{inputenc}
 \usepackage{standalone}
 \usepackage{tikz}
+\usepackage{caption}
 \usepackage{adjustbox}
 \usetikzlibrary{mindmap,shadows, shapes, arrows}
-
 \usetheme{m}
 
 
@@ -89,8 +88,14 @@
 \usemintedstyle{pastie}
 \AtBeginSection{\frame{\sectionpage}}
 
+\renewcommand\footnoterule{}
+\newcommand{\citeurl}[1]{\let\thefootnote\relax\footnotetext{\tiny \textit{\textcolor{gray}{#1}}}}
+
+\metroset{everytitleformat=regular}
+
 \begin{document}
 
+\input{colours.tex}
 \input{content.tex}
 
 \end{document}

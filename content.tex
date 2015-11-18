@@ -1,128 +1,245 @@
-\title{Module Title}
+\title{Data Representation and Querying}
 \subtitle{}
 \author{ian.mcloughlin@gmit.ie}
 \date{}
 
 
 \begin{frame}
-\titlepage
+	\titlepage
 \end{frame}
 
 \begin{frame}
-\frametitle{Topics}
-\tableofcontents
+	\frametitle{Topics}
+	\tableofcontents
 \end{frame}
 
 \section{About this module}
 
 \begin{frame}{Learning outcomes}
-On completion of this module the learner will/should be able to:
-  \begin{itemize}
-    \item Explain the mathematical and algorithmic underpinnings of 2d and 3d computer graphics.
-    \item Apply the basic principles of 2d transformations and animation.
-    \item Apply the basic principles of 3d rendering and virtual reality.
-  \end{itemize}
+	On completion of this module the learner will/should be able to:
+	\begin{itemize}
+		\item Explain the benefits and the limitations of a variety of data models.
+		\item Determine the most appropriate data model given a set of requirements.
+		\item Represent, integrate and querying large datasets using existing API's and frameworks.
+		\item Describe the principles behind both the linked data and the open data movements.
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Examinations}
+	\begin{table}
+		\begin{tabular}{p{4cm}r@{\hspace{0.5cm}}p{4cm}}
+			Type & \% & Date \\
+			\hline
+			Project & 50 & Week 8 \\
+			End of Semester Exam & 50 & See exams timetable
+		\end{tabular}
+	\end{table}
+\end{frame}
+
+\section{HTTP}
+\begin{frame}{HyperText Transfer Protocol}
+  \begin{description}
+		\item[HyperText] Text with links.
+    \vspace{0.25cm}
+		\item[Transfer] Communication of data.
+    \vspace{0.25cm}
+		\item[Protocol] Set of rules for communication.
+  \end{description}
+\end{frame}
+
+\begin{frame}{Uniform Resource Locator}
+  \textcolor{amethyst}{http}://\textcolor{vermilion}{www}.\textcolor{azure(colorwheel)}{reddit.com}:\textcolor{brightpink}{80}\textcolor{green(ryb)}{/r/funny/}?\textcolor{harvardcrimson}{limit=1}
+  
   \begin{table}
-    \begin{tabular}{p{4cm}r@{\hspace{0.5cm}}p{4cm}}
-      Type & \% & Date \\
-      \hline
-      Continuous Assessment & 50 & Week 6 \\
-      End of Semester Exam & 50 & See exams timetable
+    \begin{tabular}{r@{\hspace{0.5cm}}p{6cm}}
+      \textcolor{amethyst}{http} & Protocol \\
+      \textcolor{brightpink}{80} & Port \\
+      \textcolor{vermilion}{www} & Subdomain \\
+      \textcolor{azure(colorwheel)}{reddit.com} & Domain \\
+      \textcolor{green(ryb)}{/r/funny/} & Path \\
+      \textcolor{harvardcrimson}{limit=1} & Parameter
     \end{tabular}
   \end{table}
 \end{frame}
 
-\begin{frame}[fragile]{Code}
-  \begin{minted}{html}
-<!DOCTYPE html>
+
+\begin{frame}{Resources}
+ \begin{columns}[onlytextwidth]
+   \begin{column}{0.5\textwidth}
+     \centering
+      \begin{figure}
+        \begin{tikzpicture}
+          \draw (0,0) -- (0,1.2) -- (0.7,1.2) -- (0.7,0.8) -- (1,0.8) -- (1,0) -- cycle;
+          \draw (0.7,1.2) -- (1,0.8);
+          \foreach \y in {0.2,0.4,0.6}{
+            \draw (0.2,\y) -- (0.8,\y);
+            \draw (0.2,0.8) -- (0.6,0.8);
+            \draw (0.2,1) -- (0.6,1);
+          }
+        \end{tikzpicture}
+        \caption*{File}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \begin{figure}
+      \begin{tikzpicture}
+        \node (A) [cylinder, shape border rotate=90, draw,minimum height=1.3cm,minimum width=1cm] {};
+      \end{tikzpicture}
+      \caption*{Database}
+      \end{figure}
+    \end{column}
+  \end{columns}
+  
+  \begin{quote}
+    HTTP is used to transmit resources \ldots A resource is some chunk of information that can be identified by a URL \ldots The most common kind of resource is a file, but a resource may also be a dynamically-generated query result \ldots
+  \end{quote}
+  \citeurl{www.jmarshall.com/easy/http}
+\end{frame}
+
+
+
+\begin{frame}{HTTP Methods}
+  \begin{description}
+    \item[GET] Retrieve information from the server.
+    \item[HEAD] Like get, but retrieve only the response header.
+    \item[POST] Send data to the server.
+    \item[PUT] Set the resource at the URI to the request data.
+    \item[DELETE] Delete the resource at the URI.
+    \item[CONNECT] Set up tunnel for other traffic to pass through HTTP.
+    \item[OPTIONS] Find the allowable operations at the given URI.
+    \item[TRACE] Echo the received request.
+    \item[PATCH] Partial resource modification.
+  \end{description}
+\end{frame}
+
+
+\begin{frame}[fragile]{Request (GET)}
+  \begin{minted}{http}
+GET /path/file.html HTTP/1.0
+From: someuser@jmarshall.com
+User-Agent: HTTPTool/1.0
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Response}
+  \begin{minted}{http}
+HTTP/1.1 200 OK
+Date: Mon, 27 Jul 2009 12:28:53 GMT
+Server: Apache/2.2.14 (Win32)
+Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+Content-Length: 88
+Content-Type: text/html
+Connection: Closed
+
 <html>
-  <head>
-    <title>Transformations</title>
-    <meta charset="UTF-8">
-    <style type="text/css"></style>
-  </head>
   <body>
-    <script type="text/javascript"></script>
+    <h1>Hello, World!</h1>
   </body>
 </html>
   \end{minted}
 \end{frame}
 
 
-\begin{frame}{Mindmap}
-\begin{adjustbox}{max totalsize={.9\textwidth}{.7\textheight},center}
-\begin{tikzpicture}[mindmap, grow cyclic, every node/.style=concept, concept color=orange!40,
-    level 1/.append style={level distance=5cm,sibling angle=90},
-    level 2/.append style={level distance=3cm,sibling angle=45}]
+\begin{frame}[fragile]{Request (POST)}
+  \begin{minted}{http}
+POST /path/script.cgi HTTP/1.0
+From: frog@jmarshall.com
+User-Agent: HTTPTool/1.0
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 32
 
-\node{ShareLaTeX Tutorial Videos}
-    child [concept color=blue!30] { node {Beginners Series}
-        child { node {First Document}}
-        child { node {Sections and Paragraphs}}
-        child { node {Mathematics}}
-        child { node {Images}}
-        child { node {bibliography}}
-        child { node {Tables and Matrices}}
-        child { node {Longer Documents}}
-    }
-    child [concept color=yellow!30] { node {Thesis Series}
-        child { node {Basic Structure}}
-        child { node {Page Layout}}
-        child { node {Figures, Subfigures and Tables}}
-        child { node {Biblatex}}
-        child { node {Title Page}}
-    }
-    child [concept color=teal!40] { node {Beamer Series}
-        child { node {Getting Started}}
-        child { node {Text, Pictures and Tables}}
-        child { node {Blocks, Code and Hyperlinks}}
-        child { node {Overlay Specifications}}
-        child { node {Themes and Handouts}}
-    }
-    child [concept color=purple!50] { node {TikZ Series}
-        child { node {Basic Drawing}}
-        child { node {Geogebra}}
-        child { node {Flow Charts}}
-        child { node {Circuit Diagrams}}
-        child [concept color=green!40] { node {Mind Maps}}
-    };
-\end{tikzpicture}
-\end{adjustbox}
+home=Cosby&favorite+flavor=flies
+  \end{minted}
+\end{frame}
+
+\begin{frame}{URL encoding}
+  HTML form data is usually URL-encoded by changing;
+  \begin{itemize}
+    \item Unsafe characters to \% \emhp{xx} where \emph{xx} is the ascii value.
+    \item All spaces to plusses.
+    \item Names and values to: name1=value1\&name2=value2.
+  \end{itemize}
+  
+  \begin{description}
+    \item[GET] The parameters tag onto the URL with a ?, e.g.\ http://www.google.ie?q=Funny+cats.
+    \item[POST] Parameters go in the body.
+  \end{description}
+  \citeurl{www.jmarshall.com/easy/http}
+\end{frame}
+
+
+\begin{frame}{Mindmap}
+	\begin{adjustbox}{max totalsize={.9\textwidth}{.7\textheight},center}
+		\begin{tikzpicture}[mindmap, grow cyclic, every node/.style=concept, concept color=orange!40,
+		level 1/.append style={level distance=5cm,sibling angle=90},
+		level 2/.append style={level distance=3cm,sibling angle=45}]
+		
+		\node{ShareLaTeX Tutorial Videos}
+		child [concept color=blue!30] { node {Beginners Series}
+			child { node {First Document}}
+			child { node {Sections and Paragraphs}}
+			child { node {Mathematics}}
+			child { node {Images}}
+			child { node {bibliography}}
+			child { node {Tables and Matrices}}
+			child { node {Longer Documents}}
+		}
+		child [concept color=yellow!30] { node {Thesis Series}
+			child { node {Basic Structure}}
+			child { node {Page Layout}}
+			child { node {Figures, Subfigures and Tables}}
+			child { node {Biblatex}}
+			child { node {Title Page}}
+		}
+		child [concept color=teal!40] { node {Beamer Series}
+			child { node {Getting Started}}
+			child { node {Text, Pictures and Tables}}
+			child { node {Blocks, Code and Hyperlinks}}
+			child { node {Overlay Specifications}}
+			child { node {Themes and Handouts}}
+		}
+		child [concept color=purple!50] { node {TikZ Series}
+			child { node {Basic Drawing}}
+			child { node {Geogebra}}
+			child { node {Flow Charts}}
+			child { node {Circuit Diagrams}}
+			child [concept color=green!40] { node {Mind Maps}}
+		};
+		\end{tikzpicture}
+	\end{adjustbox}
 \end{frame}
 
 \begin{frame}{Diagram}
-\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
-    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
-\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
-    text width=5em, text centered, rounded corners, minimum height=4em]
-\tikzstyle{line} = [draw, -latex']
-\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
-    minimum height=2em]
-
-\begin{adjustbox}{max totalsize={.9\textwidth}{.7\textheight},center} 
-\begin{tikzpicture}[node distance = 2cm, auto]
-    % Place nodes
-    \node [block] (init) {initialize model};
-    \node [cloud, left of=init] (expert) {expert};
-    \node [cloud, right of=init] (system) {system};
-    \node [block, below of=init] (identify) {identify candidate models};
-    \node [block, below of=identify] (evaluate) {evaluate candidate models};
-    \node [block, left of=evaluate, node distance=3cm] (update) {update model};
-    \node [decision, below of=evaluate] (decide) {is best candidate better?};
-    \node [block, below of=decide, node distance=3cm] (stop) {stop};
-    % Draw edges
-    \path [line] (init) -- (identify);
-    \path [line] (identify) -- (evaluate);
-    \path [line] (evaluate) -- (decide);
-    \path [line] (decide) -| node [near start] {yes} (update);
-    \path [line] (update) |- (identify);
-    \path [line] (decide) -- node {no}(stop);
-    \path [line,dashed] (expert) -- (init);
-    \path [line,dashed] (system) -- (init);
-    \path [line,dashed] (system) |- (evaluate);
-\end{tikzpicture}
-\end{adjustbox}
+	\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+	text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+	\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+	text width=5em, text centered, rounded corners, minimum height=4em]
+	\tikzstyle{line} = [draw, -latex']
+	\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+	minimum height=2em]
+	
+	\begin{adjustbox}{max totalsize={.9\textwidth}{.7\textheight},center} 
+		\begin{tikzpicture}[node distance = 2cm, auto]
+		% Place nodes
+		\node [block] (init) {initialize model};
+		\node [cloud, left of=init] (expert) {expert};
+		\node [cloud, right of=init] (system) {system};
+		\node [block, below of=init] (identify) {identify candidate models};
+		\node [block, below of=identify] (evaluate) {evaluate candidate models};
+		\node [block, left of=evaluate, node distance=3cm] (update) {update model};
+		\node [decision, below of=evaluate] (decide) {is best candidate better?};
+		\node [block, below of=decide, node distance=3cm] (stop) {stop};
+		% Draw edges
+		\path [line] (init) -- (identify);
+		\path [line] (identify) -- (evaluate);
+		\path [line] (evaluate) -- (decide);
+		\path [line] (decide) -| node [near start] {yes} (update);
+		\path [line] (update) |- (identify);
+		\path [line] (decide) -- node {no}(stop);
+		\path [line,dashed] (expert) -- (init);
+		\path [line,dashed] (system) -- (init);
+		\path [line,dashed] (system) |- (evaluate);
+		\end{tikzpicture}
+	\end{adjustbox}
 \end{frame}
