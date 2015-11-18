@@ -284,6 +284,15 @@ Connection: Closed
   \end{description}
 \end{frame}
 
+\begin{frame}{About JSON}
+  \begin{itemize}
+    \item JSON is just text, but text that conforms to a syntax.
+    \item JSON is heavily influenced by JavaScript, but it is used in with all languages.
+    \item JSON's primary purpose is to represent information in text form.
+    \item JSON is popular because it is easy to send over HTTP and parse in JavaScript.
+  \end{itemize}
+\end{frame}
+
 \begin{frame}{Sending JSON}
   \tikzstyle{block} = [rectangle, fill=azure(colorwheel), text width=4.5em, text centered, minimum height=4em]
   \tikzstyle{line} = [draw, -latex']
@@ -364,6 +373,64 @@ var text = JSON.stringify(obj);
 \end{frame}
 
 \section{XML}
+
+\begin{frame}{eXtensible Markup Language}
+  \begin{description}
+    \item[Extensible] Designed to accommodate change.
+    \vspace{0.25cm}
+    \item[Markup] Annotates text.
+    \vspace{0.25cm}
+    \item[Language] Set of rules for communication.
+  \end{description}
+\end{frame}
+
+
+\begin{frame}{About XML}
+  \begin{itemize}
+    \item XML is an alternative to JSON.
+    \item XML looks like HTML, but it is different.
+    \item XML's purpose is to represent information in text form.
+    \item There are no pre-defined tag names -- you make them up yourself.
+    \item XML has a tree-like syntax.
+    \item The Document Object Model (DOM) can be applied to XML.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{XML Example}
+  \begin{minted}{xml}
+<?xml version="1.0" encoding="UTF-8"?>
+<book isbn-13="978-0131774292" isbn-10="0131774298">
+  <title>Expert C Programming: Deep C Secrets</title>
+  <publisher>Prentice Hall</publisher>
+  <author>Peter van der Linden</author>
+</book>
+  \end{minted}
+\end{frame}
+
+\begin{frame}{XML Syntax}
+  \begin{description}
+    \item[Declaration] XML documents should have a single line at the start stating that it's XML, the version of XML it is, and an encoding.
+    \item[Elements] XML is structured as elements, which are enclosed in angle brackets.
+    \item[Root element] XML must have a single root element that wraps all others.
+    \item[Attbirutes] Elements can have attributes, which are name--value pairs within the angle brackets. A given attribute name can only be specified once per element.
+    \item[Entity references] Certain characters must be escaped with entity references, e.g.\ \&lt; for $\langle$.
+    \item[Case sensitive] Everything in XML is case sensitive.
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{XML Syntax Example}
+  \begin{minted}{xml}
+  <?xml version="1.0" encoding="UTF-8"?>
+  <parent-element attribute-name="attribute-value">
+    <child name="value">Text</child-element>
+    <child name="value">Text</child-element>
+    <child name="value">Text</child-element>
+    <lone-warrior />
+  </parent-element>
+  \end{minted}
+\end{frame}
+
+\section{HTTP APIs}
 
 \section{AJAX}
 

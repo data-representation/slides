@@ -24,9 +24,10 @@
 \definecolor{gmitgrey}{RGB}{67,67,67}
 
 \defbeamertemplate*{title page}{customized}[1][]{
-	\begin{center} \Huge \textcolor{gmitblue} \inserttitle \end{center}
-	\begin{center} \Large \textcolor{gmitblue} \insertsubtitle \end{center}
 	\vspace{2cm}
+  \begin{center} \Huge \textcolor{gmitblue} \inserttitle \end{center}
+	\begin{center} \Large \textcolor{gmitblue} \insertsubtitle \end{center}
+	\vspace{1cm}
 	\begin{center} \small \textcolor{gmitgrey} \insertauthor \end{center}
 	\begin{center} \small \textcolor{gmitgrey} \insertdate \end{center}
 }
@@ -36,14 +37,14 @@
 
 \setbeamertemplate{blocks}[rounded][shadow=false]
 \addtobeamertemplate{block begin}{\pgfsetfillopacity{0.8}}{\pgfsetfillopacity{1}}
+
+
+
 \setbeamercolor{structure}{fg=gmitblue}
 \setbeamercolor*{block title}{fg=gmitblue,bg=gmitgrey!30}
 \setbeamercolor*{block body}{fg=black,bg=gmitgrey!20}
 \setbeamercolor*{block title example}{fg=gmitblue,bg=gmitgrey!30}
 \setbeamercolor*{block body example}{fg=black,bg=gmitgrey!20}
-
-
-
 %\setbeamercolor{alerted text}{fg=orange}
 %\setbeamercolor{background canvas}{bg=white}
 %\setbeamercolor{block body alerted}{bg=normal text.bg!90!black}
@@ -53,7 +54,7 @@
 %\setbeamercolor{block title}{bg=blue}
 %\setbeamercolor{block title example}{use={normal text,example text},fg=example text.fg!75!normal text.fg,bg=normal text.bg!75!black}
 %\setbeamercolor{fine separation line}{}
-%\setbeamercolor{frametitle}{fg=brown}
+\setbeamercolor{frametitle}{fg=white, bg=gmitblue}
 %\setbeamercolor{item projected}{fg=black}
 %\setbeamercolor{normal text}{bg=black,fg=yellow}
 %\setbeamercolor{palette sidebar primary}{use=normal text,fg=normal text.fg}
