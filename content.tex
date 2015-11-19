@@ -430,9 +430,84 @@ var text = JSON.stringify(obj);
   \end{minted}
 \end{frame}
 
-\section{HTTP APIs}
+\begin{frame}{Document Object Model}
+  \begin{itemize}
+    \item The Document Object Model (DOM) is a programming interface for HTML and XML documents.
+    \item It provides a model of the document as a structured group of nodes that have properties and methods.
+    \item The DOM connects web pages to scripts or programming languages.
+    \item You can use document.createElement, document.createTextNode and document.element.appendChild to add to the DOM.
+    \item You can use document.getElementById to access elements of the DOM.
+  \end{itemize}
+  \citeurl{developer.mozilla.org/en-US/docs/Web/API/Document\_Object\_Model/Introduction}
+\end{frame}
+
 
 \section{AJAX}
+
+\begin{frame}{Asynchronous JavaScript and XML}
+  AJAX stands for Asynchronous JavaScript and XML.
+  \vspace{0.5cm}
+  \begin{description}
+    \item[Asynchronous] In the background, and without a page refresh.
+    \vspace{0.25cm}
+    \item[JavaScript] Programming language for the web.
+    \vspace{0.25cm}
+    \item[XML] eXtensible Markup Language.
+  \end{description}
+\end{frame}
+
+
+\begin{frame}{About AJAX}
+  \begin{itemize}
+    \item AJAX allows us to make a HTTP request from JavaScript without a page refresh.
+    \item AJAX also allows us to receive the response from that request and deal with it.
+    \item Despite the name, we don't have to use XML, we can use JSON or anything else.
+    \item This happens asynchronously, so that the rest of our code be run while waiting for a slower piece of code to complete.
+    \item HTTP requests are usually relatively slow.
+    \item We use a callback function, which is called when the HTTP transaction is complete.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{AJAX Example}
+  \begin{minted}{javascript}
+var xmlhttp = new XMLHttpRequest();
+
+xmlhttp.onreadystatechange = function() {
+  if (xmlhttp.readyState == 4) {
+    var mydiv = document.getElementById("mydivid");
+    mydiv.innerHTML = xmlhttp.responseText;
+  }
+};
+
+xmlhttp.open("GET", "https://goo.gl/2GCplC");
+xmlhttp.send();
+  \end{minted}
+\end{frame}
+
+\begin{frame}{AJAX Example Explained}
+  \begin{itemize}
+    \item XMLHttpRequest is a built-in class that provides AJAX functionality in JavaScript.
+    \item httpRequest.onreadystatechange should be set to a function to run every time something happens in our HTTP call.
+    \item httpRequest.open is called to initialize the request.
+    \item httpRequest.send is used to send the request to the server.
+    \item XMLHttpRequest.readyState changes when the state of the AJAX call changes. This triggers a call to httpRequest.onreadystatechange.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Using jQuery}
+  \begin{minted}{html}
+<script src="jquery.min.js"></script>
+  \end{minted}
+  \vspace{1cm}
+  \begin{minted}{javascript}
+$.get("https://goo.gl/2GCplC", function(data) {
+  $("#mydivid").html(data);
+});
+  \end{minted}
+\end{frame}
+
+
+\section{HTTP APIs}
 
 \section{NoSQL}
 
