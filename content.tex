@@ -83,14 +83,16 @@
 
 
 \begin{frame}{Uniform Resource Locator}
-  \textcolor{amethyst}{http}://\textcolor{vermilion}{www}.\textcolor{azure(colorwheel)}{reddit.com}:\textcolor{brightpink}{80}\textcolor{green(ryb)}{/r/funny/}?\textcolor{harvardcrimson}{limit=1}
+  \textcolor{amethyst}{http}://\textcolor{darkblue}{username}:\textcolor{davy\'sgrey}{password}@\textcolor{vermilion}{www}.\textcolor{azure(colorwheel)}{reddit.com}:\textcolor{brightpink}{80}\textcolor{green(ryb)}{/r/funny/}?\textcolor{harvardcrimson}{limit=1}
   
   \begin{table}
     \begin{tabular}{r@{\hspace{0.5cm}}p{6cm}}
       \textcolor{amethyst}{http} & Protocol \\
-      \textcolor{brightpink}{80} & Port \\
+      \textcolor{darkblue}{username} & Username \\
+      \textcolor{davy\'sgrey}{password} & Password \\
       \textcolor{vermilion}{www} & Subdomain \\
       \textcolor{azure(colorwheel)}{reddit.com} & Domain \\
+      \textcolor{brightpink}{80} & Port \\
       \textcolor{green(ryb)}{/r/funny/} & Path \\
       \textcolor{harvardcrimson}{limit=1} & Parameter
     \end{tabular}
@@ -142,17 +144,6 @@
   \end{description}
 \end{frame}
 
-\begin{frame}{Security}
-  \begin{itemize}
-    \item HTTP is not encrypted.
-    \item HTTPS is a protocol based on HTTP, but it provides security.
-    \item GET and POST are by far the most commonly used HTTP methods (by web developers).
-    \item Data sent by GET and POST will be encrypted over HTTPS.
-    \item However, it's generally accepted that POST is more secure for sending sensitive data.
-    \item This is because browsers will typically cache and servers will typically log URLS, with the data encoded in them.
-  \end{itemize}
-\end{frame}
-
 \begin{frame}[fragile]{Request and Response Format}
   Requests and responses both have this format:
   \begin{itemize}
@@ -175,13 +166,13 @@ User-Agent: HTTPTool/1.0
 
 \begin{frame}[fragile]{Request (POST)}
   \begin{minted}{http}
-  POST /path/script.cgi HTTP/1.0
-  From: frog@jmarshall.com
-  User-Agent: HTTPTool/1.0
-  Content-Type: application/x-www-form-urlencoded
-  Content-Length: 32
-  
-  home=Cosby&favorite+flavor=flies
+POST /path/script.cgi HTTP/1.0
+From: frog@jmarshall.com
+User-Agent: HTTPTool/1.0
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 32
+
+home=Cosby&favorite+flavor=flies
   \end{minted}
 \end{frame}
 
@@ -204,7 +195,6 @@ Connection: Closed
 \end{frame}
 
 
-
 \begin{frame}{URL encoding}
   HTML form data is usually URL-encoded by changing;
   \begin{itemize}
@@ -220,6 +210,18 @@ Connection: Closed
   \citeurl{www.jmarshall.com/easy/http}
 \end{frame}
 
+\begin{frame}{Security}
+  \begin{itemize}
+    \item HTTP is not encrypted.
+    \item HTTPS is a protocol based on HTTP, but it provides security.
+    \item GET and POST are by far the most commonly used HTTP methods (by web developers).
+    \item Data sent by GET and POST will be encrypted over HTTPS.
+    \item However, it's generally accepted that POST is more secure for sending sensitive data.
+    \item This is because browsers will typically cache and servers will typically log URLS, with the data encoded in them.
+  \end{itemize}
+\end{frame}
+
+
 \section{REST}
 
 \begin{frame}{REST}
@@ -229,9 +231,25 @@ Connection: Closed
     \item RESTful APIs make use of more HTTP methods than just GET and POST.
     \item Most HTTP APIs are not RESTful.
     \item RESTful APIs adhere to a few loosely defined constraints.
-    \item Two of those constraints are that the API is stateless and cachable.
+    \item Two of those constraints are that the API is stateless and cacheable.
   \end{itemize}
   \citeurl{drdobbs.com/web-development/restful-web-services-a-tutorial/240169069}
+\end{frame}
+
+\begin{frame}{Typical example}
+  Suppose we have a system for storing and retrieving emails.
+  \begin{table}
+    \begin{tabular}{r@{\hspace{0.5cm}}|l@{\hspace{0.5cm}}|l}
+      Method & URL & Description \\
+      \hline
+      GET    & /emails   & list all emails \\
+      POST   & /email    & store new email \\
+      GET    & /email/32 & retrieve email with id 32 \\
+      PUT    & /email/32 & update email with id 32 \\
+      DELETE & /email/32 & delete email with id 32
+    \end{tabular}
+  \end{table}
+  \citeurl{bitworking.org/news/201/restify-daytrader}
 \end{frame}
 
 \begin{frame}{Stateless}
@@ -244,32 +262,17 @@ Connection: Closed
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Cachable}
+\begin{frame}{Cacheable}
   \begin{itemize}
-    \item REST APIs should provide responses that are cachable.
+    \item REST APIs should provide responses that are cacheable.
     \item Intermediaries between the client and server should be able to cache responses.
     \item This should be transparent to the client.
-    \item Cachability increases response time.
+    \item Cacheability increases response time.
     \item Browsers usually cache resources, in case they are requested again.
     \item There is usually a time limit on cached resources.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Example}
-  Suppose we have a system for storing and retrieving member's details.
-  \begin{table}
-    \begin{tabular}{r@{\hspace{0.5cm}}|l@{\hspace{0.5cm}}|l}
-      Method & URL & Description \\
-      \hline
-      GET    & /people   & list members \\
-      POST   & /people   & create member \\
-      GET    & /people/1 & retrieve member \\
-      PUT    & /people/1 & update member \\
-      DELETE & /people/1 & delete member
-    \end{tabular}
-  \end{table}
-  \citeurl{bitworking.org/news/201/restify-daytrader}
-\end{frame}
 
 
 \section{JSON}
