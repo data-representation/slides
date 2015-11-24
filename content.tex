@@ -23,7 +23,7 @@
 	\begin{itemize}
 		\item Explain the benefits and the limitations of a variety of data models.
 		\item Determine the most appropriate data model given a set of requirements.
-		\item Represent, integrate and querying large datasets using existing API's and frameworks.
+		\item Represent, integrate and query large datasets using existing API's and frameworks.
 		\item Describe the principles behind both the linked data and the open data movements.
 	\end{itemize}
 \end{frame}
@@ -149,7 +149,7 @@
     \item GET and POST are by far the most commonly used HTTP methods (by web developers).
     \item Data sent by GET and POST will be encrypted over HTTPS.
     \item However, it's generally accepted that POST is more secure for sending sensitive data.
-    \item This is because browsers will typically cache and server will typically log URLS, with the data encoded in them.
+    \item This is because browsers will typically cache and servers will typically log URLS, with the data encoded in them.
   \end{itemize}
 \end{frame}
 
@@ -167,7 +167,7 @@
 
 \begin{frame}[fragile]{Request (GET) Example}
   \begin{minted}{http}
-GET /path/file.html HTTP/1.0
+GET /path/item/1?q=Funny+cats HTTP/1.0
 From: someuser@jmarshall.com
 User-Agent: HTTPTool/1.0
   \end{minted}
@@ -461,7 +461,7 @@ var text = JSON.stringify(obj);
   \begin{itemize}
     \item AJAX allows us to make a HTTP request from JavaScript without a page refresh.
     \item AJAX also allows us to receive the response from that request and deal with it.
-    \item Despite the name, we don't have to use XML, we can use JSON or anything else.
+    \item Despite the name, we don't have to use XML -- we can use JSON or anything else.
     \item This happens asynchronously, so that the rest of our code be run while waiting for a slower piece of code to complete.
     \item HTTP requests are usually relatively slow.
     \item We use a callback function, which is called when the HTTP transaction is complete.
