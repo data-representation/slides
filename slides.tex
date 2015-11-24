@@ -8,7 +8,7 @@
 \usepackage{tikz}
 \usepackage{caption}
 \usepackage{adjustbox}
-\usetikzlibrary{mindmap,shadows, shapes, arrows}
+\usetikzlibrary{mindmap,shadows, shapes, arrows, positioning}
 \usetheme{m}
 
 
@@ -93,6 +93,13 @@
 \newcommand{\citeurl}[1]{\let\thefootnote\relax\footnotetext{\tiny \textit{\textcolor{gray}{#1}}}}
 
 \metroset{everytitleformat=regular}
+
+
+\tikzstyle{rect} = [rectangle, fill=deepskyblue, text width=4.5em, text centered, minimum height=4em, rounded corners]
+\tikzstyle{line} = [draw, ->, very thick]
+\tikzstyle{oval} = [ellipse, fill=grannysmithapple, text width=5em, text centered]
+
+
 
 \begin{document}
 

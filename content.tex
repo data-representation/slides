@@ -54,23 +54,17 @@
 \end{frame}
 
 
-\begin{frame}{Request--Response}
-  \tikzstyle{block} = [rectangle, fill=azure(colorwheel), text width=4.5em, text centered, minimum height=4em]
-  \tikzstyle{line} = [draw, -latex']
-  \tikzstyle{cloud} = [ellipse, fill=wildwatermelon, text width=5em, text centered]
-  \tikzstyle{startstop} = [rectangle, rounded corners, text width=5em, minimum height=4em, text centered, fill=tiffanyblue]
-  
-  \begin{adjustbox}{max totalsize={.9\textwidth}{.8\textheight},center} 
-    \begin{tikzpicture}[node distance = 3.5cm]
-      \node [cloud] (client1) {Client (Firefox)};
-      \node [block, right of=client1] (request) {Request};
-      \node [block, right of=client1] (request) {Request};
-      \node [cloud, right of=request] (server1) {Server (Apache)};
-      \node [block, below of=server1] (generate) {Generate response};
-      \node [cloud, below of=generate] (server2) {Server (Apache)};
-      \node [block, left of=server2] (response) {Response};
-      \node [cloud, left of=response] (client2) {Client (Firefox)};
-      % Draw edges
+\begin{frame}{Request--Response}  
+  \begin{adjustbox}{max width={0.9\textwidth},center} 
+    \begin{tikzpicture}[node distance = 4cm]
+      \node [oval] (client1) {Client (Firefox)};
+      \node [rect, right of=client1] (request) {Request};
+      \node [rect, right of=client1] (request) {Request};
+      \node [oval, right of=request] (server1) {Server (Apache)};
+      \node [rect, below=1cm of server1] (generate) {Generate response};
+      \node [oval, below=1cm of generate] (server2) {Server (Apache)};
+      \node [rect, left of=server2] (response) {Response};
+      \node [oval, left of=response] (client2) {Client (Firefox)};
       \path [line] (client1) -- (request);
       \path [line] (request) -- (server1);
       \path [line,dashed] (server1) -- (generate);
@@ -304,10 +298,10 @@ Connection: Closed
   
   \begin{adjustbox}{max totalsize={.9\textwidth}{.6\textheight},center} 
     \begin{tikzpicture}[node distance=4cm]
-    \node [cloud] (object1) {Object Instance};
-    \node [block, below of=object1] (json1) {JSON};
-    \node [block, right of=json1, node distance = 6cm] (json2) {JSON};
-    \node [cloud, above of=json2] (object2) {Object Instance};
+    \node [oval] (object1) {Object Instance};
+    \node [rect, below of=object1] (json1) {JSON};
+    \node [rect, right of=json1, node distance = 6cm] (json2) {JSON};
+    \node [oval, above of=json2] (object2) {Object Instance};
     % Draw edges
     \path [line] (object1) -- node[style={rectangle,fill=white,draw}]{stringify} (json1);
     \path [line] (json1) -- node[style={rectangle,fill=white},draw ]{HTTP} (json2);
@@ -512,6 +506,46 @@ $.get("https://goo.gl/2GCplC", function(data) {
 
 \section{HTTP APIs}
 
+
+\begin{frame}{HTTP APIs}
+	\begin{itemize}
+		\item Facebook, Google, Reddit and others often provide programmable interfaces to their services.
+		\item This lets other application developers use the services programmatically.
+		\item For instance, Reddit allows developers to create mobile apps for viewing and making submissions to reddit.
+		\item HTTP is often the mechanism used for this purpose.
+		\item Access is provided through a set of URLs, across a variety of HTTP methods.
+		\item The APIs often require JSON in HTTP request bodies and often return the query results as JSON.
+	\end{itemize}
+\end{frame}
+
+
+
 \section{NoSQL}
+
+\begin{frame}{NoSQL}
+	\begin{itemize}
+		\item NoSQL is the umbrella term for databases that do not conform to the relational, SQL-style model.
+		\item Relational databases are good for some types of data.
+		\item However, they have some issues.
+		\item SQL queries can result in costly joins.
+		\item Tables can be sparsely populated.
+		\item Two common NoSQL database types are Document-oriented and Graph.
+		
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{CouchDB}
+	\begin{itemize}
+		\item CouchDB is a document-oriented database.
+		\item Documents are represented in CouchDB as JSON objects.
+		\item Each document has its own id and revision, indicated by properties \_id and \_rev in the JSON document.
+		\item Updating a document leaves its \_id intact, but updates its \_rev.
+		\item Different documents can have different properties -- there is no schema.
+		\item The main interface with CouchDB, for storage and retrieval is a HTTP API.
+		\item CouchDB uses HTTP methods such as GET, POST, PUT and DELETE to retrieve, add, update and delete documents.
+	\end{itemize}
+\end{frame}
+
+
 
 \section{Map Reduce}
