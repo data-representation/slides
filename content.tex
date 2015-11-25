@@ -538,14 +538,84 @@ $.get("https://goo.gl/2GCplC", function(data) {
 	\begin{itemize}
 		\item CouchDB is a document-oriented database.
 		\item Documents are represented in CouchDB as JSON objects.
-		\item Each document has its own id and revision, indicated by properties \_id and \_rev in the JSON document.
-		\item Updating a document leaves its \_id intact, but updates its \_rev.
+		\item Each document has its own id and revision, indicated by properties \mintinline{js}{_id} and \mintinline{js}{_rev} in the JSON document.
+		\item Updating a document leaves its \mintinline{js}{_id} intact, but updates its \mintinline{js}{_rev}.
 		\item Different documents can have different properties -- there is no schema.
 		\item The main interface with CouchDB, for storage and retrieval is a HTTP API.
-		\item CouchDB uses HTTP methods such as GET, POST, PUT and DELETE to retrieve, add, update and delete documents.
+		\item CouchDB uses HTTP methods such as \mintinline{http}{GET}, \mintinline{http}{POST}, \mintinline{http}{PUT} and \mintinline{http}{DELETE} to retrieve, add, update and delete documents.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Futon}
+	\begin{itemize}
+		\item CouchDB has an in-built admin interface.
+		\item It's called Futon.
+		\item You access it through the \mintinline{html}{/_utils} path.
+		\item You can create and delete databases.
+		\item You can also create, update and delete documents.
 	\end{itemize}
 \end{frame}
 
 
+\section{MapReduce}
 
-\section{Map Reduce}
+\begin{frame}{MapReduce}
+	\begin{itemize}
+		\item MapReduce is a way of programming.
+		\item It is a model performing specific types of problems that are common in programming.
+		\item MapReduce promotes algorithms that have an initially embarrassingly parallel part, and a subsequent consolidation part.
+		\item The former is the Map part, and the letter is the Reduce part.
+		\item MapReduce isn't necessarily anything new, the ideas have existed for a long time.
+		\item The formalisation of those ideas and their implementation in systems such as Hadoop is useful.
+	\end{itemize}
+\citeurl{joelonsoftware.com/items/2006/08/01.html}
+\end{frame}
+
+\begin{frame}[fragile]{Map}
+Map takes a function and a list, and applies the function to every element of the list.
+  \begin{minted}{javascript}
+function map(fn, a) {
+  r = [];
+  for (i = 0; i < a.length; i++)
+  	r[i] = fn(a[i]);
+	return r;
+}
+	\end{minted}
+	\citeurl{joelonsoftware.com/items/2006/08/01.html}
+\end{frame}
+
+\begin{frame}[fragile]{Reduce}
+Reduce takes the output of Map, and accumulates the elements in some way.
+  \begin{minted}{javascript}
+function reduce(fn, a, init) {
+  var s = init;
+  for (i = 0; i < a.length; i++)
+      s = fn(s, a[i]);
+  return s;
+}
+	\end{minted}
+	\citeurl{joelonsoftware.com/items/2006/08/01.html}
+\end{frame}
+
+\begin{frame}[fragile]{Map Reduce in CouchDB}
+Reduce takes the output of Map, and accumulates the elements in some way.
+  \begin{minted}{javascript}
+function(doc) {
+  if(doc.date && doc.title) {
+    emit(doc.date, doc.title);
+  }
+}
+	\end{minted}
+	
+  \begin{minted}{javascript}
+function(keys, values, rereduce) {
+  if (rereduce)
+    return sum(values);
+	else
+    return values.length;
+}
+	\end{minted}
+	
+	\citeurl{http://guide.couchdb.org/draft/views.html}
+
+\end{frame}
