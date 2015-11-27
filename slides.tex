@@ -1,15 +1,10 @@
-\documentclass[usenames,dvipsnames]{beamer}
+\documentclass[usenames,xcolor={dvipsnames}]{beamer}
 %\documentclass[handout,12pt]{beamer}
 
-\usepackage{color}
-\usepackage{minted}
-\usepackage[utf8]{inputenc}
-\usepackage{standalone}
-\usepackage{tikz}
-\usepackage{caption}
-\usepackage{adjustbox}
-\usetikzlibrary{mindmap,shadows, shapes, arrows, positioning}
-\usetheme{m}
+
+
+
+
 
 
 %\usepackage{pgfpages}
@@ -19,9 +14,27 @@
 %\pgfpageslogicalpageoptions{3}{border code=\pgfusepath{stroke}}
 %\pgfpageslogicalpageoptions{4}{border code=\pgfusepath{stroke}}
 
+
+
+\usepackage{xcolor}
+\usepackage{minted}
+\usepackage[utf8]{inputenc}
+\usepackage{standalone}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{adjustbox}
+\usetikzlibrary{mindmap,shadows, shapes, arrows, positioning}
+
+%\input{colours.tex}
+
 \definecolor{gmitblue}{RGB}{18,124,201}
 \definecolor{gmitred}{RGB}{108,16,38}
 \definecolor{gmitgrey}{RGB}{67,67,67}
+
+\usetheme{m}
+\metroset{everytitleformat=regular}
+
+
 
 \defbeamertemplate*{title page}{customized}[1][]{
 	\vspace{2cm}
@@ -92,18 +105,14 @@
 \renewcommand\footnoterule{}
 \newcommand{\citeurl}[1]{\let\thefootnote\relax\footnotetext{\tiny \textit{\textcolor{gray}{#1}}}}
 
-\metroset{everytitleformat=regular}
 
-
-\tikzstyle{rect} = [rectangle, fill=deepskyblue, text width=4.5em, text centered, minimum height=4em, rounded corners]
+\tikzstyle{rect} = [rectangle, fill=ProcessBlue, text width=4.5em, text centered, minimum height=4em, rounded corners]
 \tikzstyle{line} = [draw, ->, very thick]
-\tikzstyle{oval} = [ellipse, fill=grannysmithapple, text width=5em, text centered]
-
+\tikzstyle{oval} = [ellipse, fill=SeaGreen, text width=5em, text centered]
 
 
 \begin{document}
 
-\input{colours.tex}
 \input{content.tex}
 
 \end{document}
