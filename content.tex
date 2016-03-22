@@ -15,32 +15,6 @@
 	\tableofcontents
 \end{frame}
 
-\section{About this module}
-
-
-\begin{frame}{Learning outcomes}
-	On completion of this module the learner will/should be able to:
-	\begin{itemize}
-		\item Explain the benefits and the limitations of a variety of data models.
-		\item Determine the most appropriate data model given a set of requirements.
-		\item Represent, integrate and query large datasets using existing API's and frameworks.
-		\item Describe the principles behind both the linked data and the open data movements.
-	\end{itemize}
-\end{frame}
-
-
-\begin{frame}{Examinations}
-	\begin{table}
-		\begin{tabular}{p{4cm}r@{\hspace{0.5cm}}p{4cm}}
-			Type & \% & Date \\
-			\hline
-			Project & 50 & Week 8 \\
-			End of Semester Exam & 50 & See exams timetable
-		\end{tabular}
-	\end{table}
-\end{frame}
-
-
 \section{HTTP}
 
 \begin{frame}{HyperText Transfer Protocol}
@@ -54,7 +28,10 @@
 \end{frame}
 
 
-\begin{frame}{Request--Response}  
+\begin{frame}{Request--Response}
+  \tikzstyle{rect} = [rectangle,fill=gmitblue,text width=4.5em,text centered,minimum height=4em,rounded corners,text=white]
+  \tikzstyle{line} = [draw,->,very thick]
+  \tikzstyle{oval} = [ellipse,fill=gmitred,text width=5em,text centered,text=white]
   \begin{adjustbox}{max width={0.9\textwidth},center} 
     \begin{tikzpicture}[node distance = 4cm]
       \node [oval] (client1) {Client (Firefox)};
@@ -77,17 +54,24 @@
 
 
 \begin{frame}{Uniform Resource Locator}
-  \textcolor{Aquamarine}{http}://\textcolor{Fuchsia}{username}:\textcolor{Magenta}{password}@\textcolor{MidnightBlue}{www}.\textcolor{Periwinkle}{reddit.com}:\textcolor{SeaGreen}{80}\textcolor{LimeGreen}{/r/funny/}?\textcolor{DarkOrchid}{limit=1}
+  \textcolor{BlueViolet}{http}://%
+  \textcolor{RubineRed}{username}:%
+  \textcolor{Mahogany}{password}@%
+  \textcolor{MidnightBlue}{www}.%
+  \textcolor{OliveGreen}{reddit.com}:%
+  \textcolor{Dandelion}{80}%
+  \textcolor{Plum}{/r/funny/}?%
+  \textcolor{DarkOrchid}{limit=1}
   
   \begin{table}
     \begin{tabular}{r@{\hspace{0.5cm}}p{6cm}}
-      \textcolor{Aquamarine}{http} & Protocol \\
-      \textcolor{Fuchsia}{username} & Username \\
-      \textcolor{Magenta}{password} & Password \\
+      \textcolor{BlueViolet}{http} & Protocol \\
+      \textcolor{RubineRed}{username} & Username \\
+      \textcolor{Mahogany}{password} & Password \\
       \textcolor{MidnightBlue}{www} & Subdomain \\
-      \textcolor{Periwinkle}{reddit.com} & Domain \\
-      \textcolor{SeaGreen}{80} & Port \\
-      \textcolor{LimeGreen}{/r/funny/} & Path \\
+      \textcolor{OliveGreen}{reddit.com} & Domain \\
+      \textcolor{Dandelion}{80} & Port \\
+      \textcolor{Plum}{/r/funny/} & Path \\
       \textcolor{DarkOrchid}{limit=1} & Parameter
     \end{tabular}
   \end{table}
@@ -296,7 +280,12 @@ Connection: Closed
   \tikzstyle{cloud} = [ellipse, fill=wildwatermelon, text width=5em, text centered]
   \tikzstyle{startstop} = [rectangle, rounded corners, text width=5em, minimum height=4em, text centered, fill=tiffanyblue]
   
-  \begin{adjustbox}{max totalsize={.9\textwidth}{.6\textheight},center} 
+  \begin{adjustbox}{max totalsize={.9\textwidth}{.6\textheight},center}
+  
+  \tikzstyle{rect} = [rectangle,fill=gmitblue,text width=4.5em,text centered,minimum height=4em,rounded corners,text=white]
+  \tikzstyle{line} = [draw,->,very thick]
+  \tikzstyle{oval} = [ellipse,fill=gmitred,text width=5em,text centered,text=white]
+    
     \begin{tikzpicture}[node distance=4cm]
     \node [oval] (object1) {Object Instance};
     \node [rect, below of=object1] (json1) {JSON};
