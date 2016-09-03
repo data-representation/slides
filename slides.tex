@@ -14,6 +14,7 @@
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{xspace}
+
 \usetikzlibrary{mindmap,shadows,arrows,positioning,chains,fit,shapes}
 
 \usetheme{metropolis}
@@ -30,6 +31,25 @@
 \renewcommand\footnoterule{}
 \newcommand{\citeurl}[1]{\let\thefootnote\relax\footnotetext{\tiny \textcolor{gmitgrey}{\href{http://#1}{#1}}}}
 
+\newcommand{\hr}{\rule{\textwidth}{0.5pt}}
+
 \begin{document}
-  \input{content.tex}
+  \title{Data Representation and Querying}
+  \subtitle{}
+  \author{ian.mcloughlin@gmit.ie}
+  \date{}
+
+  \begin{frame}
+    \titlepage
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Topics}
+    \tableofcontents
+  \end{frame}
+
+  \input{sections/http.tex}
+  \input{sections/data.tex}
+  \input{sections/rest.tex}
+  \input{sections/sessions.tex}
 \end{document}

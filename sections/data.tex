@@ -1,0 +1,240 @@
+%!TEX root = ../slides.tex
+\section{Data}
+
+
+\begin{frame}{JSON}
+  \begin{description}
+    \item[JavaScript] A scripting/programming language.
+    \vspace{0.25cm}
+    \item[Object] Groups of name--value pairs.
+    \vspace{0.25cm}
+    \item[Notation] Set of rules for representing objects.
+  \end{description}
+  \begin{itemize}
+    \item JSON is just text --- text that conforms to a syntax.
+    \item JSON is heavily influenced by JavaScript, but it is used in with all languages.
+    \item JSON's primary purpose is to represent information in text form.
+    \item JSON is popular because it is easy to send over HTTP and parse in JavaScript.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Sending JSON}
+  \tikzstyle{block} = [rectangle, fill=azure(colorwheel), text width=4.5em, text centered, minimum height=4em]
+  \tikzstyle{line} = [draw, -latex']
+  \tikzstyle{cloud} = [ellipse, fill=wildwatermelon, text width=5em, text centered]
+  \tikzstyle{startstop} = [rectangle, rounded corners, text width=5em, minimum height=4em, text centered, fill=tiffanyblue]
+  
+  \begin{adjustbox}{max totalsize={.9\textwidth}{.6\textheight},center}
+  
+  \tikzstyle{rect} = [rectangle,fill=gmitblue,text width=4.5em,text centered,minimum height=4em,rounded corners,text=white]
+  \tikzstyle{line} = [draw,->,very thick]
+  \tikzstyle{oval} = [ellipse,fill=gmitred,text width=5em,text centered,text=white]
+    
+    \begin{tikzpicture}[node distance=4cm]
+    \node [oval] (object1) {Object Instance};
+    \node [rect, below of=object1] (json1) {JSON};
+    \node [rect, right of=json1, node distance = 6cm] (json2) {JSON};
+    \node [oval, above of=json2] (object2) {Object Instance};
+    % Draw edges
+    \path [line] (object1) -- node[style={rectangle,fill=white,draw}]{stringify} (json1);
+    \path [line] (json1) -- node[style={rectangle,fill=white},draw ]{HTTP} (json2);
+    \path [line] (json2) -- node[style={rectangle,fill=white,draw}]{parse} (object2);
+    % Draw Memory
+    \draw [color=gray, dashed](-2,-1.5) rectangle (2,1.25);
+    \node at (-1.4,-1.35) [] {\tiny Machine 1};
+    \draw [color=gray, dashed](4,-1.5) rectangle (8,1.25);
+    \node at (4.6,-1.35) [] {\tiny Machine 2};
+    \end{tikzpicture}
+  \end{adjustbox}
+\end{frame}
+
+\begin{frame}[fragile]{JSON Example}
+  \begin{minted}{json}
+{
+  "employees": [
+    {"firstName":"John", "lastName":"Doe"},
+    {"firstName":"Anna", "lastName":"Smith"},
+    {"firstName":"Peter", "lastName":"Jones"}
+  ]
+}
+  \end{minted}
+\end{frame}
+
+
+\begin{frame}[fragile]{Using JSON in JavaScript}
+  \begin{minted}{javascript}
+// Turning text into a JavaScript object.
+var obj = JSON.parse(text);
+// obj is an obect.
+
+// Turning a JavaScript object into text.
+var text = JSON.stringify(obj);
+// text is a string.
+  \end{minted}
+\end{frame}
+
+\begin{frame}{JSON Syntax}
+  \begin{itemize}
+    \item Name/Value pairs separated by a colon. \\
+    \hspace{0.5cm} \mintinline{json}{"name": "Ian"}
+    \item Objects identified by curly braces. \\
+    \hspace{0.5cm} \mintinline{json}{{}}
+    \item Lists identified by square brackets. \\
+    \hspace{0.5cm} \mintinline{json}{[]}
+    \item All strings (and names) use double quotes (not single). \\
+    \hspace{0.5cm} \mintinline{json}{"Ian"}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{JSON Types}
+  \begin{itemize}
+    \item Numbers \\
+    \hspace{0.5cm} \mintinline{json}{123.456}
+    \item Strings \\
+    \hspace{0.5cm} \mintinline{json}{"Hello, world!"}
+    \item Boolean \\
+    \hspace{0.5cm} \mintinline{json}{true"}
+    \item Arrays\\
+    \hspace{0.5cm} \mintinline{json}{[1,2,3]}
+    \item Objects\\
+    \hspace{0.5cm} \mintinline{json}{{"name": "Ian"}}
+    \item null \\
+    \hspace{0.5cm} \mintinline{json}{null}
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{eXtensible Markup Language}
+  \begin{description}
+    \item[Extensible] Designed to accommodate change.
+    \vspace{0.25cm}
+    \item[Markup] Annotates text.
+    \vspace{0.25cm}
+    \item[Language] Set of rules for communication.
+  \end{description}
+\end{frame}
+
+
+\begin{frame}{About XML}
+  \begin{itemize}
+    \item XML is an alternative to JSON.
+    \item XML looks like HTML, but it is different.
+    \item XML's purpose is to represent information in text form.
+    \item There are no pre-defined tag names -- you make them up yourself.
+    \item XML has a tree-like syntax.
+    \item The Document Object Model (DOM) can be applied to XML.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{XML Example}
+  \begin{minted}{xml}
+<?xml version="1.0" encoding="UTF-8"?>
+<book isbn-13="978-0131774292" isbn-10="0131774298">
+  <title>Expert C Programming: Deep C Secrets</title>
+  <publisher>Prentice Hall</publisher>
+  <author>Peter van der Linden</author>
+</book>
+  \end{minted}
+\end{frame}
+
+\begin{frame}{XML Syntax}
+  \begin{description}
+    \item[Declaration] XML documents should have a single line at the start stating that it's XML, the version of XML it is, and an encoding.
+    \item[Elements] XML is structured as elements, which are enclosed in angle brackets.
+    \item[Root element] XML must have a single root element that wraps all others.
+    \item[Attbirutes] Elements can have attributes, which are name--value pairs within the angle brackets. A given attribute name can only be specified once per element.
+    \item[Entity references] Certain characters must be escaped with entity references, e.g.\ \&lt; for $\langle$.
+    \item[Case sensitive] Everything in XML is case sensitive.
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{XML Syntax Example}
+  \begin{minted}{xml}
+  <?xml version="1.0" encoding="UTF-8"?>
+  <parent-element attribute-name="attribute-value">
+    <child name="value">Text</child-element>
+    <child name="value">Text</child-element>
+    <child name="value">Text</child-element>
+    <lone-warrior />
+  </parent-element>
+  \end{minted}
+\end{frame}
+
+\begin{frame}{Document Object Model}
+  \begin{itemize}
+    \item The Document Object Model (DOM) is a programming interface for HTML and XML documents.
+    \item It provides a model of the document as a structured group of nodes that have properties and methods.
+    \item The DOM connects web pages to scripts or programming languages.
+    \item You can use document.createElement, document.createTextNode and document.element.appendChild to add to the DOM.
+    \item You can use document.getElementById to access elements of the DOM.
+  \end{itemize}
+  \citeurl{developer.mozilla.org/en-US/docs/Web/API/Document\_Object\_Model/Introduction}
+\end{frame}
+
+
+\begin{frame}{Asynchronous JavaScript and XML}
+  AJAX stands for Asynchronous JavaScript and XML.
+  \vspace{0.5cm}
+  \begin{description}
+    \item[Asynchronous] In the background, and without a page refresh.
+    \vspace{0.25cm}
+    \item[JavaScript] Programming language for the web.
+    \vspace{0.25cm}
+    \item[XML] eXtensible Markup Language.
+  \end{description}
+\end{frame}
+
+
+\begin{frame}{About AJAX}
+  \begin{itemize}
+    \item AJAX allows us to make a HTTP request from JavaScript without a page refresh.
+    \item AJAX also allows us to receive the response from that request and deal with it.
+    \item Despite the name, we don't have to use XML -- we can use JSON or anything else.
+    \item This happens asynchronously, so that the rest of our code be run while waiting for a slower piece of code to complete.
+    \item HTTP requests are usually relatively slow.
+    \item We use a callback function, which is called when the HTTP transaction is complete.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{AJAX Example}
+  \begin{minted}{javascript}
+var xmlhttp = new XMLHttpRequest();
+
+xmlhttp.onreadystatechange = function() {
+  if (xmlhttp.readyState == 4) {
+    var mydiv = document.getElementById("mydivid");
+    mydiv.innerHTML = xmlhttp.responseText;
+  }
+};
+
+xmlhttp.open("GET", "https://goo.gl/2GCplC");
+xmlhttp.send();
+  \end{minted}
+\end{frame}
+
+
+\begin{frame}{AJAX Example Explained}
+  \begin{itemize}
+    \item XMLHttpRequest is a built-in class that provides AJAX functionality in JavaScript.
+    \item httpRequest.onreadystatechange should be set to a function to run every time something happens in our HTTP call.
+    \item httpRequest.open is called to initialize the request.
+    \item httpRequest.send is used to send the request to the server.
+    \item XMLHttpRequest.readyState changes when the state of the AJAX call changes. This triggers a call to httpRequest.onreadystatechange.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Using jQuery}
+  \begin{minted}{html}
+<script src="jquery.min.js"></script>
+  \end{minted}
+  \vspace{1cm}
+  \begin{minted}{javascript}
+$.get("https://goo.gl/2GCplC", function(data) {
+  $("#mydivid").html(data);
+});
+  \end{minted}
+\end{frame}

@@ -1,0 +1,55 @@
+%!TEX root = ../slides.tex
+\section{REST}
+
+
+\begin{frame}{REST}
+  \begin{itemize}
+    \item REST stands for Representational State Transfer.
+    \item REST is an architecture describing how we might use HTTP.
+    \item RESTful APIs make use of more HTTP methods than just GET and POST.
+    \item Most HTTP APIs are not RESTful.
+    \item RESTful APIs adhere to a few loosely defined constraints.
+    \item Two of those constraints are that the API is stateless and cacheable.
+  \end{itemize}
+  \citeurl{drdobbs.com/web-development/restful-web-services-a-tutorial/240169069}
+\end{frame}
+
+
+\begin{frame}{Typical example}
+  Suppose we have a system for storing and retrieving emails.
+  \begin{table}
+    \begin{tabular}{r@{\hspace{0.5cm}}|l@{\hspace{0.5cm}}|l}
+      Method & URL & Description \\
+      \hline
+      GET    & /emails   & list all emails \\
+      POST   & /email    & store new email \\
+      GET    & /email/32 & retrieve email with id 32 \\
+      PUT    & /email/32 & update email with id 32 \\
+      DELETE & /email/32 & delete email with id 32
+    \end{tabular}
+  \end{table}
+  \citeurl{bitworking.org/news/201/restify-daytrader}
+\end{frame}
+
+
+\begin{frame}{Stateless}
+  \begin{itemize}
+    \item Statelessness is a REST constraint.
+    \item HTTP uses the client-server model.
+    \item The server should treat each request as a single, independent transaction.
+    \item No client state should be stored on the server.
+    \item Each request must contain all of the information to perform the request. 
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Cacheable}
+  \begin{itemize}
+    \item REST APIs should provide responses that are cacheable.
+    \item Intermediaries between the client and server should be able to cache responses.
+    \item This should be transparent to the client.
+    \item Cacheability increases response time.
+    \item Browsers usually cache resources, in case they are requested again.
+    \item There is usually a time limit on cached resources.
+  \end{itemize}
+\end{frame}

@@ -1,0 +1,178 @@
+%!TEX root = ../slides.tex
+\section{HTTP}
+
+
+\begin{frame}{HyperText Transfer Protocol}
+  \begin{description}
+		\item[HyperText] Text with links.
+		\item[Transfer] Communication of data.
+		\item[Protocol] Set of rules for communication.
+    \item[HTTP/1.1] is the current widely used version.
+    \item[HTTP/2] use is slowly growing.
+  \end{description}
+\end{frame}
+
+
+\begin{frame}{Request--Response}
+  \tikzstyle{rect} = [rectangle,fill=gmitblue,text width=4.5em,text centered,minimum height=4em,rounded corners,text=white]
+  \tikzstyle{line} = [draw,->,very thick]
+  \tikzstyle{oval} = [ellipse,fill=gmitred,text width=5em,text centered,text=white]
+  \begin{adjustbox}{max width={0.9\textwidth},center} 
+    \begin{tikzpicture}[node distance = 4cm]
+      \node [oval] (client1) {Client (Firefox)};
+      \node [rect, right of=client1] (request) {Request};
+      \node [rect, right of=client1] (request) {Request};
+      \node [oval, right of=request] (server1) {Server (Apache)};
+      \node [rect, below=1cm of server1] (generate) {Generate response};
+      \node [oval, below=1cm of generate] (server2) {Server (Apache)};
+      \node [rect, left of=server2] (response) {Response};
+      \node [oval, left of=response] (client2) {Client (Firefox)};
+      \path [line] (client1) -- (request);
+      \path [line] (request) -- (server1);
+      \path [line,dashed] (server1) -- (generate);
+      \path [line,dashed] (generate) -- (server2);
+      \path [line] (server2) -- (response);
+      \path [line] (response) -- (client2);
+    \end{tikzpicture}
+  \end{adjustbox}
+\end{frame}
+
+
+\begin{frame}{Uniform Resource Locator}
+  \textcolor{BlueViolet}{http}://%
+  \textcolor{RubineRed}{username}:%
+  \textcolor{Mahogany}{password}@%
+  \textcolor{MidnightBlue}{www}.%
+  \textcolor{OliveGreen}{reddit.com}:%
+  \textcolor{Dandelion}{80}%
+  \textcolor{Plum}{/r/funny/}?%
+  \textcolor{DarkOrchid}{limit=1}
+  
+  \begin{table}
+    \begin{tabular}{r@{\hspace{0.5cm}}p{6cm}}
+      \textcolor{BlueViolet}{http} & Protocol \\
+      \textcolor{RubineRed}{username} & Username \\
+      \textcolor{Mahogany}{password} & Password \\
+      \textcolor{MidnightBlue}{www} & Subdomain \\
+      \textcolor{OliveGreen}{reddit.com} & Domain \\
+      \textcolor{Dandelion}{80} & Port \\
+      \textcolor{Plum}{/r/funny/} & Path \\
+      \textcolor{DarkOrchid}{limit=1} & Parameter
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+
+\begin{frame}{Resources}
+ \begin{columns}[onlytextwidth]
+   \begin{column}{0.5\textwidth}
+     \centering
+      \begin{figure}
+        \begin{tikzpicture}
+          \draw (0,0) -- (0,1.2) -- (0.7,1.2) -- (0.7,0.8) -- (1,0.8) -- (1,0) -- cycle;
+          \draw (0.7,1.2) -- (1,0.8);
+        \end{tikzpicture}
+        \caption*{File}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \begin{figure}
+      \begin{tikzpicture}
+        \node (A) [cylinder, shape border rotate=90, draw,minimum height=1.3cm,minimum width=1cm] {};
+      \end{tikzpicture}
+      \caption*{Database}
+      \end{figure}
+    \end{column}
+  \end{columns}
+  
+  \begin{quote}
+    HTTP is used to transmit resources \ldots A resource is some chunk of information that can be identified by a URL \ldots The most common kind of resource is a file, but a resource may also be a dynamically-generated query result \ldots
+  \end{quote}
+  \citeurl{www.jmarshall.com/easy/http}
+\end{frame}
+
+
+\begin{frame}{HTTP Methods}
+  \begin{description}
+    \item[GET] Retrieve information from the server.
+    \item[HEAD] Like get, but retrieve only the response header.
+    \item[POST] Send data to the server.
+    \item[PUT] Set the resource at the URL to the request data.
+    \item[DELETE] Delete the resource at the URL.
+    \item[CONNECT] Set up tunnel for other traffic to pass through HTTP.
+    \item[OPTIONS] Find the allowable operations at the given URL.
+    \item[TRACE] Echo the received request.
+    \item[PATCH] Partial resource modification.
+  \end{description}
+\end{frame}
+
+
+\begin{frame}[fragile]{Request and Response Format}
+  Requests and responses both have this format:
+  \begin{itemize}
+    \item Intial line.
+    \item Zero or more header lines.
+    \item A blank line.
+    \item Optional message body (e.g. a HTML file)
+  \end{itemize}
+  \citeurl{www.jmarshall.com/easy/http}
+\end{frame}
+
+
+\begin{frame}[fragile]{Request (GET) Example}
+  \begin{minted}{http}
+GET /path/item/1?q=Funny+cats HTTP/1.0
+From: someuser@jmarshall.com
+User-Agent: HTTPTool/1.0
+  \end{minted}
+\end{frame}
+
+
+\begin{frame}[fragile]{Request (POST)}
+  \begin{minted}{http}
+POST /path/script.cgi HTTP/1.0
+From: frog@jmarshall.com
+User-Agent: HTTPTool/1.0
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 32
+
+home=Cosby&favorite+flavor=flies
+  \end{minted}
+\end{frame}
+
+
+\begin{frame}[fragile]{Response Example}
+  \begin{minted}{http}
+HTTP/1.1 200 OK
+Date: Mon, 27 Jul 2009 12:28:53 GMT
+Server: Apache/2.2.14 (Win32)
+Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+Content-Length: 88
+Content-Type: text/html
+Connection: Closed
+
+<html>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
+  \end{minted}
+\end{frame}
+
+
+\begin{frame}{URL encoding}
+  HTML form data is usually URL-encoded by changing:
+  \begin{itemize}
+    \item Unsafe characters to \% \emph{xx} where \emph{xx} is the ASCII value.
+    \item All spaces to plusses.
+    \item Names and values to: name1=value1\&name2=value2.
+  \end{itemize}
+  \hr
+  \begin{description}
+    \item[GET] --- in the URL after a question mark.
+    \item[POST] --- in the body.
+  \end{description}
+  \citeurl{www.jmarshall.com/easy/http}
+\end{frame}
+
