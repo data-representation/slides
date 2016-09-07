@@ -14,20 +14,29 @@
 \end{frame}
 
 
+\begin{frame}{Why send objects over HTTP?}
+  \begin{description}
+    \item[Databases] store a lot of the world's data.
+    \item[Data] are usually stored using some sort of structure, so that they're reusable.
+    \item[Object] usually means blueprint, the plans of the house.
+    \item[Instance] usually means realisation of an object, like an actual house built from the plans.
+    \item[JavaScript] doesn't make the distinction too clear.
+    \item[Often] we would like to send a small chunk of structured data from a database server to a user's machine. Then their browser cna display it nicely.
+    \item[HTTP with JSON] can do this. 
+  \end{description}
+\end{frame}
+
+
 \begin{frame}{JSON}
   \begin{description}
     \item[JavaScript] A scripting/programming language.
-    \vspace{0.25cm}
     \item[Object] Groups of name--value pairs.
-    \vspace{0.25cm}
-    \item[Notation] Set of rules for representing objects.
+    \item[Notation] Set of rules for representing objects.\\[1cm]
+    \item[JSON is] just text --- text that conforms to a syntax.
+    \item[Inluenced] by JavaScript's syntax, but it is useable in all languages.
+    \item[Represents] information in text form.
+    \item[Popular] because it is easy to send over HTTP and parse in JavaScript.
   \end{description}
-  \begin{itemize}
-    \item JSON is just text --- text that conforms to a syntax.
-    \item JSON is heavily influenced by JavaScript, but it is used in with all languages.
-    \item JSON's primary purpose is to represent information in text form.
-    \item JSON is popular because it is easy to send over HTTP and parse in JavaScript.
-  \end{itemize}
 \end{frame}
 
 \begin{frame}{Sending JSON}
@@ -74,10 +83,11 @@
 
 
 \begin{frame}[fragile]{Using JSON in JavaScript}
+  The key here is that an object instance on one machine can be turned into JSON text, transmitted, and then reconstructed into an object instance on another machine. 
   \begin{minted}{javascript}
 // Turning text into a JavaScript object.
 var obj = JSON.parse(text);
-// obj is an obect.
+// obj is an obect instance.
 
 // Turning a JavaScript object into text.
 var text = JSON.stringify(obj);
@@ -87,13 +97,13 @@ var text = JSON.stringify(obj);
 
 \begin{frame}{JSON Syntax}
   \begin{itemize}
-    \item Name/Value pairs separated by a colon. \\
-    \hspace{0.5cm} \mintinline{json}{"name": "Ian"}
     \item Objects identified by curly braces. \\
     \hspace{0.5cm} \mintinline{json}{{}}
+    \item Name:Value pairs within objects separated by a comma. \\
+    \hspace{0.5cm} \mintinline{json}{{"name": "Ian", "fingers": 10}}
     \item Lists identified by square brackets. \\
-    \hspace{0.5cm} \mintinline{json}{[]}
-    \item All strings (and names) use double quotes (not single). \\
+    \hspace{0.5cm} \mintinline{json}{["Ian", "Marco", "Sam"]}
+    \item All names and strings use \underline{double} quotes. \\
     \hspace{0.5cm} \mintinline{json}{"Ian"}
   \end{itemize}
 \end{frame}
@@ -105,7 +115,7 @@ var text = JSON.stringify(obj);
     \item Strings \\
     \hspace{0.5cm} \mintinline{json}{"Hello, world!"}
     \item Boolean \\
-    \hspace{0.5cm} \mintinline{json}{true"}
+    \hspace{0.5cm} \mintinline{json}{true}
     \item Arrays\\
     \hspace{0.5cm} \mintinline{json}{[1,2,3]}
     \item Objects\\
@@ -119,26 +129,16 @@ var text = JSON.stringify(obj);
 
 \begin{frame}{eXtensible Markup Language}
   \begin{description}
-    \item[Extensible] Designed to accommodate change.
-    \vspace{0.25cm}
+    \item[XML] is a JSON alternative. 
+    \item[eXtensible] Designed to accommodate change.
     \item[Markup] Annotates text.
-    \vspace{0.25cm}
     \item[Language] Set of rules for communication.
+    \item[JSON] seems to be used more frequently than XML in most modern web applications.
+    \item[XML] seems to be a little more verbose.
+    \item[XML] was designed with more uses in mind.
+    \item[HTML] and XML look similar.
   \end{description}
 \end{frame}
-
-
-\begin{frame}{About XML}
-  \begin{itemize}
-    \item XML is an alternative to JSON.
-    \item XML looks like HTML, but it is different.
-    \item XML's purpose is to represent information in text form.
-    \item There are no pre-defined tag names -- you make them up yourself.
-    \item XML has a tree-like syntax.
-    \item The Document Object Model (DOM) can be applied to XML.
-  \end{itemize}
-\end{frame}
-
 
 \begin{frame}[fragile]{XML Example}
   \begin{minted}{xml}
@@ -150,6 +150,16 @@ var text = JSON.stringify(obj);
 </book>
   \end{minted}
 \end{frame}
+
+
+\begin{frame}{Using XML}
+  \begin{description}
+    \item[Tags] are not pre-defined tag names -- you make them up yourself.
+    \item[Syntax] follows a tree-like pattern. Tags can be nested within other tags.
+    \item[Document Object Model (DOM)] is a concept related to XML.
+  \end{description}
+\end{frame}
+
 
 \begin{frame}{XML Syntax}
   \begin{description}
@@ -164,54 +174,70 @@ var text = JSON.stringify(obj);
 
 \begin{frame}[fragile]{XML Syntax Example}
   \begin{minted}{xml}
-  <?xml version="1.0" encoding="UTF-8"?>
-  <parent-element attribute-name="attribute-value">
-    <child name="value">Text</child-element>
-    <child name="value">Text</child-element>
-    <child name="value">Text</child-element>
-    <lone-warrior />
-  </parent-element>
+<?xml version="1.0" encoding="UTF-8"?>
+<parent-element attribute-name="attribute-value">
+  <child name="value">Text</child-element>
+  <child name="value">Text</child-element>
+  <child name="value">Text</child-element>
+  <lone-warrior />
+</parent-element>
   \end{minted}
 \end{frame}
 
 \begin{frame}{Document Object Model}
-  \begin{itemize}
-    \item The Document Object Model (DOM) is a programming interface for HTML and XML documents.
-    \item It provides a model of the document as a structured group of nodes that have properties and methods.
-    \item The DOM connects web pages to scripts or programming languages.
-    \item You can use document.createElement, document.createTextNode and document.element.appendChild to add to the DOM.
-    \item You can use document.getElementById to access elements of the DOM.
-  \end{itemize}
+  \begin{description}
+    \item[The DOM] is a programming interface for HTML and XML documents.
+    \item[Models] the document as a structured group of nodes that have properties and methods.
+    \item[Connects] web pages to scripts or programming languages.
+    \item[Use] document.createElement, document.createTextNode and document.element.appendChild to add to the DOM.
+    \item[Use] document.getElementById to access elements of the DOM.
+    \item[Extensively] in web applications.
+    \item[Angular, jQuey and React] have different ideas about the developers relationship with the DOM.
+  \end{description}
   \citeurl{developer.mozilla.org/en-US/docs/Web/API/Document\_Object\_Model/Introduction}
 \end{frame}
 
 
-\begin{frame}{Asynchronous JavaScript and XML}
-  AJAX stands for Asynchronous JavaScript and XML.
-  \vspace{0.5cm}
+\begin{frame}{Using JSON and XML}
   \begin{description}
-    \item[Asynchronous] In the background, and without a page refresh.
-    \vspace{0.25cm}
-    \item[JavaScript] Programming language for the web.
-    \vspace{0.25cm}
-    \item[XML] eXtensible Markup Language.
+    \item[JSON and XML] don't do anything by themselves --- they're just text.
+    \item[HTTP] can be used to retreive JSON (or XML) from a server.
+    \item[Developers] can use JavaScript to retreive JSON (or XML) in the background of a web application.
+    \item[The DOM] of the web page currently displayed in a browser can then be manipulated to display this information.
+    \item[Web applications] are really just web pages that use this trick.
+    \item[The mechanism] by which a web application does this is called AJAX.
+    \item[Facebook] uses this to display new posts once the user has scrolled to the bottom of the screen.
   \end{description}
 \end{frame}
 
 
-\begin{frame}{About AJAX}
-  \begin{itemize}
-    \item AJAX allows us to make a HTTP request from JavaScript without a page refresh.
-    \item AJAX also allows us to receive the response from that request and deal with it.
-    \item Despite the name, we don't have to use XML -- we can use JSON or anything else.
-    \item This happens asynchronously, so that the rest of our code be run while waiting for a slower piece of code to complete.
-    \item HTTP requests are usually relatively slow.
-    \item We use a callback function, which is called when the HTTP transaction is complete.
-  \end{itemize}
+\begin{frame}{Asynchronous JavaScript and XML}
+  
+  \begin{description}
+    \item[AJAX] stands for Asynchronous JavaScript and XML.
+    \item[Asynchronous] In the background, and without a page refresh.
+    \item[JavaScript] Programming language for the web.
+    \item[XML] eXtensible Markup Language.
+    \item[Page refreshes] happen when the webpage is removed from the view, and a new one is rendered.
+    \item[JavaScript] can be used to change this behaviour. On clicking a link, and AJAX call can be triggered instead, and the web page remains.
+    \item[Location bar] can even be manipulated.
+  \end{description}
 \end{frame}
 
 
-\begin{frame}[fragile]{AJAX Example}
+\begin{frame}{More about AJAX}
+  \begin{description}
+    \item[AJAX] allows us to make a HTTP request from JavaScript, receive the response from that request and deal with it.
+    \item[Despite] the name, we don't have to receive XML --- we can use JSON or anything else.
+    \item[Calls] happen asynchronously --- other code can run while waiting.
+    \item[HTTP requests] are usually relatively slow.
+    \item[Callback functions] are used when the HTTP transaction is complete.
+    \item[JavaScript] libraries provide easy-to-use AJAX functions.
+  \end{description}
+\end{frame}
+
+
+\begin{frame}[fragile]{Raw AJAX Example}
   \begin{minted}{javascript}
 var xmlhttp = new XMLHttpRequest();
 
@@ -229,21 +255,22 @@ xmlhttp.send();
 
 
 \begin{frame}{AJAX Example Explained}
-  \begin{itemize}
+  \begin{enumerate}
     \item XMLHttpRequest is a built-in class that provides AJAX functionality in JavaScript.
     \item httpRequest.onreadystatechange should be set to a function to run every time something happens in our HTTP call.
     \item httpRequest.open is called to initialize the request.
     \item httpRequest.send is used to send the request to the server.
     \item XMLHttpRequest.readyState changes when the state of the AJAX call changes. This triggers a call to httpRequest.onreadystatechange.
-  \end{itemize}
+  \end{enumerate}
 \end{frame}
 
 
 \begin{frame}[fragile]{Using jQuery}
+jQuery is much easier to use.
+\hr
   \begin{minted}{html}
 <script src="jquery.min.js"></script>
   \end{minted}
-  \vspace{1cm}
   \begin{minted}{javascript}
 $.get("https://goo.gl/2GCplC", function(data) {
   $("#mydivid").html(data);

@@ -33,6 +33,10 @@
 
 \newcommand{\hr}{\rule{\textwidth}{0.5pt}}
 
+\makeatletter
+\expandafter\def\csname PYGdefault@tok@err\endcsname{\def\PYGdefault@bc##1{{\strut ##1}}}
+\makeatother
+
 \begin{document}
   \title{Data Representation and Querying}
   \subtitle{}

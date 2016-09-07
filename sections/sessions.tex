@@ -1,6 +1,18 @@
 %!TEX root = ../slides.tex
 \section{Sessions}
 
+\begin{frame}{Sessions}
+  \begin{description}
+    \item[HTTP] treats each request--response individually.
+		\item[How] can we let users identify themselves to the server as the same user who made a previous request?
+		\item[Needed] to enable such things as shopping carts.
+		\item[Sessions] provide a mechanism for this.
+		\item[Servers] can provide a unique key in a response, which can be used in the next request.
+		\item[Amazon] were one of the first companies to design this functionality.
+  \end{description}
+\end{frame}
+
+
 
 \begin{frame}{Security}
   \begin{itemize}
