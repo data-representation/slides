@@ -6,9 +6,62 @@
   \begin{description}
 		\item[HyperText] Text with links.
 		\item[Transfer] Communication of data.
-		\item[Protocol] Set of rules for communication.
+		\item[Protocol] Set of rules for communication.\\[1cm]
+    \item[HTTP/1.0] was the first version.
     \item[HTTP/1.1] is the current widely used version.
     \item[HTTP/2] use is slowly growing.
+  \end{description}
+\end{frame}
+
+
+\begin{frame}{Why study HTTP?}
+  \begin{description}
+		\item[HTTP] is the main protocol used by web browsers.
+    \item[Netflix] uses HTTP to stream video (using DASH).
+    \item[YouTube] streams videos over HTTP.
+    \item[Facebook] uses HTTP.
+    \item[GMail] uses HTTP.
+    \item[BitTorrent] is different to HTTP, but we usually download torrent files over HTTP.
+    \item[Sandvine] suggest most internet traffic happens over HTTP.  
+  \end{description}
+  \citeurl{sandvine.com/downloads/general/global-internet-phenomena/2015}
+\end{frame}
+
+
+\begin{frame}{Why is HTTP so widely used?}
+  \begin{description}
+		\item[HTTP] is often used instead of protocols that are more suited to the application.
+    \item[Browsers] are one of the main reasons for this. Modern operating systems come with one or more browsers installed by default.
+    \item[Web servers] and browsers mainly talk over HTTP.
+    \item[Libraries] exist for most programming languages to make HTTP requests.
+    \item[HTTP] is relatively straght-forward.
+    \item[Firewalls] usually do not block HTTP by default.  
+  \end{description}
+\end{frame}
+
+
+\begin{frame}{What is HTTP?}
+  \begin{description}
+		\item[You] will know HTTP from typing \mintinline{http}{http://} in your browser's location bar.
+    \item[RFC 2616] details HTTP/1.1.
+    \item[HTTP] is a standard way of transmitting data at the application level.
+    \item[Originally] it was for transmitting text.
+    \item[Text] is strings of ones and zeroes chopped into chunks, where each chuck represents a letter or character.
+    \item[Nothing] stops us from sending non-text data via HTTP. 
+  \end{description}
+\end{frame}
+
+
+\begin{frame}{How does HTTP work?}
+  \begin{description}
+		\item[Clients] performs requests. Firefox is an example of a client.
+    \item[Servers] respond to requests. Apache is an example of a server.
+    \item[Requests] are text documents sent by clients to servers.
+    \item[Responses] are text documents sent by server to clients.
+    \item[URLs] specify the server's location and the resource on the server.
+    \item[Headers] are text metadata added to the start of requests and responses.
+    \item[Bodies] are the main content of responses, and sometimes requests.
+    \item[HTML] typically forms the body of a response.  
   \end{description}
 \end{frame}
 
@@ -38,6 +91,18 @@
 \end{frame}
 
 
+\begin{frame}{HTTP is not like a phone call}
+  \begin{description}
+		\item[Suppose] I ring you and ask for your PPS Number.
+    \item[If] you don't understand the question, you can say ``Sorry, can you please repeat that?''.
+    \item[Then] I repeat my question, and you then give me the number before hanging up.\\[1cm]
+    \item[HTTP] doesn't work like that.
+    \item[Misunderstandings] result in the server responding with an error, and hanging up.
+    \item[Status codes] indicate errors, amongst other things.
+  \end{description}
+\end{frame}
+
+
 \begin{frame}{Uniform Resource Locator}
   \textcolor{BlueViolet}{http}://%
   \textcolor{RubineRed}{username}:%
@@ -60,6 +125,47 @@
       \textcolor{DarkOrchid}{limit=1} & Parameter
     \end{tabular}
   \end{table}
+\end{frame}
+
+
+\begin{frame}[fragile]{Request and Response Format}
+  Requests and responses both have this format:
+  \begin{itemize}
+    \item Intial line.
+    \item Zero or more header lines.
+    \item A blank line.
+    \item Optional message body (e.g. a HTML file)
+  \end{itemize}
+  \citeurl{www.jmarshall.com/easy/http}
+\end{frame}
+
+
+\begin{frame}[fragile]{Request (GET) Example}
+  \begin{minted}{http}
+GET /courses/all-courses HTTP/1.1
+Host: gmit.ie
+User-Agent: curl/7.50.1
+Accept: */*
+
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Response Example}
+  \begin{minted}{http}
+HTTP/1.1 200 OK
+Date: Mon, 27 Jul 2009 12:28:53 GMT
+Server: Apache/2.2.14 (Win32)
+Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+Content-Length: 88
+Content-Type: text/html
+Connection: Closed
+
+<html>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
+  \end{minted}
 \end{frame}
 
 
@@ -108,56 +214,31 @@
 \end{frame}
 
 
-\begin{frame}[fragile]{Request and Response Format}
-  Requests and responses both have this format:
-  \begin{itemize}
-    \item Intial line.
-    \item Zero or more header lines.
-    \item A blank line.
-    \item Optional message body (e.g. a HTML file)
-  \end{itemize}
+\begin{frame}{Status codes}
+  \begin{description}
+    \item[404] is probably the most famous status code. It means you requested a resource that doesn't exist on the server.
+    \item[200] means everything is OK, and is the most common one in everyday browsing.
+    \item[All] status codes are three digit numbers.
+    \item[1xx] indicates an informational message only
+    \item[2xx] indicates success of some kind
+    \item[3xx] redirects the client to another URL
+    \item[4xx] indicates an error on the client's part
+    \item[5xx] indicates an error on the server's part
+  \end{description}
   \citeurl{www.jmarshall.com/easy/http}
 \end{frame}
 
 
-\begin{frame}[fragile]{Request (GET) Example}
-  \begin{minted}{http}
-GET /path/item/1?q=Funny+cats HTTP/1.0
-From: someuser@jmarshall.com
-User-Agent: HTTPTool/1.0
-  \end{minted}
-\end{frame}
-
-
-\begin{frame}[fragile]{Request (POST)}
-  \begin{minted}{http}
-POST /path/script.cgi HTTP/1.0
-From: frog@jmarshall.com
-User-Agent: HTTPTool/1.0
-Content-Type: application/x-www-form-urlencoded
-Content-Length: 32
-
-home=Cosby&favorite+flavor=flies
-  \end{minted}
-\end{frame}
-
-
-\begin{frame}[fragile]{Response Example}
-  \begin{minted}{http}
-HTTP/1.1 200 OK
-Date: Mon, 27 Jul 2009 12:28:53 GMT
-Server: Apache/2.2.14 (Win32)
-Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
-Content-Length: 88
-Content-Type: text/html
-Connection: Closed
-
-<html>
-  <body>
-    <h1>Hello, World!</h1>
-  </body>
-</html>
-  \end{minted}
+\begin{frame}{Sending data to the server}
+  \begin{description}
+    \item[Sometimes] we want to tell the server something extra.
+    \item[Resources] can be generated differently based on this extra data.
+    \item[Google] can use this to perform searches on google.ie
+    \item[Try] opening \mintinline{http}{google.ie} in your browser, and then open \mintinline{http}{google.ie/?q=gmit}.
+    \item[The requested] resource here is the same but we don't get the same response.
+    \item[Two] main ways to send extra data to the server: in the URL after a question mark, or in the body of the request.
+  \end{description}
+  \citeurl{www.jmarshall.com/easy/http}
 \end{frame}
 
 
@@ -176,3 +257,25 @@ Connection: Closed
   \citeurl{www.jmarshall.com/easy/http}
 \end{frame}
 
+\begin{frame}[fragile]{Request (GET) with parameters}
+  \begin{minted}{http}
+GET /r/ireland?limit=1 HTTP/1.1
+Host: reddit.com
+User-Agent: curl/7.50.1
+Accept: */*
+
+  \end{minted}
+\end{frame}
+
+
+\begin{frame}[fragile]{Request (POST) Example}
+  \begin{minted}{http}
+POST /path/script.cgi HTTP/1.0
+From: frog@jmarshall.com
+User-Agent: HTTPTool/1.0
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 32
+
+home=Cosby&favorite+flavor=flies
+  \end{minted}
+\end{frame}
