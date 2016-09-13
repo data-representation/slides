@@ -1,5 +1,6 @@
 PROJECT=slides
-TEX=pdflatex --shell-escape
+TEX=pdflatex --shell-escape -halt-on-error --interaction=nonstopmode
+
 
 all:
 	$(TEX) $(PROJECT).tex
