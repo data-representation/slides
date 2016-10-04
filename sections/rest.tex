@@ -2,6 +2,19 @@
 \section{REST}
 
 
+\begin{frame}{HTTP APIs}
+	\begin{itemize}
+		\item Facebook, Google, Reddit and others often provide programmable interfaces to their services.
+		\item This lets other application developers use the services programmatically.
+		\item For instance, Reddit allows developers to create mobile apps for viewing and making submissions to reddit.
+		\item HTTP is often the mechanism used for this purpose.
+		\item Access is provided through a set of URLs, across a variety of HTTP methods.
+		\item The APIs often require JSON in HTTP request bodies and often return the query results as JSON.
+	\end{itemize}
+\end{frame}
+
+
+
 \begin{frame}{REST}
   \begin{itemize}
     \item REST stands for Representational State Transfer.
@@ -52,4 +65,129 @@
     \item Browsers usually cache resources, in case they are requested again.
     \item There is usually a time limit on cached resources.
   \end{itemize}
+\end{frame}
+
+
+\begin{frame}{CouchDB}
+	\begin{itemize}
+		\item CouchDB is a document-oriented database.
+		\item Documents are represented in CouchDB as JSON objects.
+		\item Each document has its own id and revision, indicated by properties \mintinline{js}{_id} and \mintinline{js}{_rev} in the JSON document.
+		\item Updating a document leaves its \mintinline{js}{_id} intact, but updates its \mintinline{js}{_rev}.
+		\item Different documents can have different properties -- there is no schema.
+		\item The main interface with CouchDB, for storage and retrieval is a HTTP API.
+		\item CouchDB uses HTTP methods such as \mintinline{http}{GET}, \mintinline{http}{POST}, \mintinline{http}{PUT} and \mintinline{http}{DELETE} to retrieve, add, update and delete documents.
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{NoSQL}
+	\begin{itemize}
+		\item NoSQL is the umbrella term for databases that do not conform to the relational, SQL-style model.
+		\item Relational databases are good for some types of data.
+		\item However, they have some issues.
+		\item SQL queries can result in costly joins.
+		\item Tables can be sparsely populated.
+		\item Two common NoSQL database types are Document-oriented and Graph.
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Futon}
+	\begin{itemize}
+		\item CouchDB has an in-built admin interface.
+		\item It's called Futon.
+		\item You access it through the \mintinline{html}{/_utils} path.
+		\item You can create and delete databases.
+		\item You can also create, update and delete documents.
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{MapReduce}
+	\begin{itemize}
+		\item MapReduce is a way of programming.
+		\item It is a model for performing specific types of problems that are common in programming.
+		\item MapReduce promotes algorithms that have an initially embarrassingly parallel part, and a subsequent consolidation part.
+		\item The former is the Map part, and the latter is the Reduce part.
+		\item MapReduce isn't necessarily anything new, the ideas have existed for a long time.
+		\item The formalisation of those ideas and their implementation in systems such as Hadoop is useful.
+	\end{itemize}
+\citeurl{joelonsoftware.com/items/2006/08/01.html}
+\end{frame}
+
+
+\begin{frame}[fragile]{Map}
+Map takes a function and a list, and applies the function to every element of the list.
+  \begin{minted}{javascript}
+function map(fn, a) {
+  r = [];
+  for (i = 0; i < a.length; i++)
+  	r[i] = fn(a[i]);
+	return r;
+}
+	\end{minted}
+	\citeurl{joelonsoftware.com/items/2006/08/01.html}
+\end{frame}
+
+
+\begin{frame}[fragile]{Reduce}
+Reduce takes the output of Map, and accumulates the elements in some way.
+  \begin{minted}{javascript}
+function reduce(fn, a, init) {
+  var s = init;
+  for (i = 0; i < a.length; i++)
+      s = fn(s, a[i]);
+  return s;
+}
+	\end{minted}
+	\citeurl{joelonsoftware.com/items/2006/08/01.html}
+\end{frame}
+
+
+\begin{frame}[fragile]{Map Reduce in CouchDB}
+Reduce takes the output of Map, and accumulates the elements in some way.
+  \begin{minted}{javascript}
+function(doc) {
+  if(doc.date && doc.title) {
+    emit(doc.date, doc.title);
+  }
+}
+	\end{minted}
+	
+  \begin{minted}{javascript}
+function(keys, values, rereduce) {
+  if (rereduce)
+    return sum(values);
+	else
+    return values.length;
+}
+	\end{minted}
+	
+	\citeurl{http://guide.couchdb.org/draft/views.html}
+
+\end{frame}
+
+
+\begin{frame}{Security}
+  \begin{itemize}
+    \item HTTP is not encrypted.
+    \item HTTPS is a protocol based on HTTP, but it provides security.
+    \item GET and POST are by far the most commonly used HTTP methods (by web developers).
+    \item Data sent by GET and POST will be encrypted over HTTPS.
+    \item However, it's generally accepted that POST is more secure for sending sensitive data.
+    \item This is because browsers will typically cache and servers will typically log URLS, with the data encoded in them.
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{HTTP access control (CORS)}
+  \begin{description}
+    \item[cross-origin] HTTP requests occur when a resource makes a request from a different domain than it was served from.
+    \item[img] tags often do this -- for example, an image might be included from a photo sharing service.
+    \item[css and js] files are also often served from domains different from the original.
+    \item[Browsers] usually restrict cross-origin requests initiated by scripts.
+  \end{description}
+  \citeurl{developer.mozilla.org/en-US/docs/Web/HTTP/Access\_control\_CORS}
 \end{frame}
