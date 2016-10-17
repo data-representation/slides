@@ -21,7 +21,7 @@
     \item[Object] usually means blueprint, the plans of the house.
     \item[Instance] usually means realisation of an object, like an actual house built from the plans.
     \item[JavaScript] doesn't make the distinction too clear.
-    \item[Often] we would like to send a small chunk of structured data from a database server to a user's machine. Then their browser cna display it nicely.
+    \item[Often] we would like to send a small chunk of structured data from a database server to a user's machine. Then their browser can display it nicely.
     \item[HTTP with JSON] can do this. 
   \end{description}
 \end{frame}
@@ -29,11 +29,11 @@
 
 \begin{frame}{JSON}
   \begin{description}
-    \item[JavaScript] A scripting/programming language.
+    \item[JavaScript] Programming language.
     \item[Object] Groups of name--value pairs.
     \item[Notation] Set of rules for representing objects.\\[1cm]
     \item[JSON is] just text --- text that conforms to a syntax.
-    \item[Inluenced] by JavaScript's syntax, but it is useable in all languages.
+    \item[Influenced] by JavaScript's syntax, but it is useable in all languages.
     \item[Represents] information in text form.
     \item[Popular] because it is easy to send over HTTP and parse in JavaScript.
   \end{description}
@@ -96,16 +96,16 @@ var text = JSON.stringify(obj);
 \end{frame}
 
 \begin{frame}{JSON Syntax}
-  \begin{itemize}
-    \item Objects identified by curly braces. \\
+  \begin{description}
+    \item[Objects] identified by curly braces. \\
     \hspace{0.5cm} \mintinline{json}{{}}
-    \item Name:Value pairs within objects separated by a comma. \\
+    \item[Name:Value] pairs within objects separated by a comma. \\
     \hspace{0.5cm} \mintinline{json}{{"name": "Ian", "fingers": 10}}
-    \item Lists identified by square brackets. \\
+    \item[Lists] identified by square brackets. \\
     \hspace{0.5cm} \mintinline{json}{["Ian", "Marco", "Sam"]}
-    \item All names and strings use \underline{double} quotes. \\
+    \item[Double quotes] around all names and strings. \\
     \hspace{0.5cm} \mintinline{json}{"Ian"}
-  \end{itemize}
+  \end{description}
 \end{frame}
 
 \begin{frame}{JSON Types}
@@ -163,11 +163,11 @@ var text = JSON.stringify(obj);
 
 \begin{frame}{XML Syntax}
   \begin{description}
-    \item[Declaration] XML documents should have a single line at the start stating that it's XML, the version of XML it is, and an encoding.
-    \item[Elements] XML is structured as elements, which are enclosed in angle brackets.
+    \item[Declaration] XML documents should have a single line at the start stating that they are XML, the version of XML used, and an encoding.
+    \item[Elements] are the main form of structure in XML, and are enclosed in angle brackets.
     \item[Root element] XML must have a single root element that wraps all others.
-    \item[Attbirutes] Elements can have attributes, which are name--value pairs within the angle brackets. A given attribute name can only be specified once per element.
-    \item[Entity references] Certain characters must be escaped with entity references, e.g.\ \&lt; for $\langle$.
+    \item[Attributes] Elements can have attributes, which are name--value pairs within the angle brackets. A given attribute name can only be specified once per element.
+    \item[Entity references] Certain characters must be escaped with entity references, e.g.\mintinline{html}{&lt;} for \mintinline{python}{<}.
     \item[Case sensitive] Everything in XML is case sensitive.
   \end{description}
 \end{frame}
@@ -189,10 +189,10 @@ var text = JSON.stringify(obj);
     \item[The DOM] is a programming interface for HTML and XML documents.
     \item[Models] the document as a structured group of nodes that have properties and methods.
     \item[Connects] web pages to scripts or programming languages.
-    \item[Use] document.createElement, document.createTextNode and document.element.appendChild to add to the DOM.
-    \item[Use] document.getElementById to access elements of the DOM.
-    \item[Extensively] in web applications.
-    \item[Angular, jQuey and React] have different ideas about the developers relationship with the DOM.
+    \item[Use document.createElement], document.createTextNode and document.element.appendChild to add to the DOM.
+    \item[Use document.getElementById] to access elements of the DOM.
+    \item[Extensively] used in web applications.
+    \item[AngularJS, jQuery and React] have different ideas about the developers relationship with the DOM.
   \end{description}
   \citeurl{developer.mozilla.org/en-US/docs/Web/API/Document\_Object\_Model/Introduction}
 \end{frame}
@@ -201,8 +201,8 @@ var text = JSON.stringify(obj);
 \begin{frame}{Using JSON and XML}
   \begin{description}
     \item[JSON and XML] don't do anything by themselves --- they're just text.
-    \item[HTTP] can be used to retreive JSON (or XML) from a server.
-    \item[Developers] can use JavaScript to retreive JSON (or XML) in the background of a web application.
+    \item[HTTP] can be used to retrieve JSON (or XML) from a server.
+    \item[Developers] can use JavaScript to retrieve JSON (or XML) in the background of a web application.
     \item[The DOM] of the web page currently displayed in a browser can then be manipulated to display this information.
     \item[Web applications] are really just web pages that use this trick.
     \item[The mechanism] by which a web application does this is called AJAX.
@@ -215,7 +215,7 @@ var text = JSON.stringify(obj);
   
   \begin{description}
     \item[AJAX] stands for Asynchronous JavaScript and XML.
-    \item[Asynchronous] In the background, and without a page refresh.
+    \item[Asynchronous] Doesn't block our other JavaScript code.
     \item[JavaScript] Programming language for the web.
     \item[XML] eXtensible Markup Language.
     \item[Page refreshes] happen when the webpage is removed from the view, and a new one is rendered.
@@ -231,7 +231,7 @@ var text = JSON.stringify(obj);
     \item[Despite] the name, we don't have to receive XML --- we can use JSON or anything else.
     \item[Calls] happen asynchronously --- other code can run while waiting.
     \item[HTTP requests] are usually relatively slow.
-    \item[Callback functions] are used when the HTTP transaction is complete.
+    \item[Callback functions] are used when HTTP transactions are complete.
     \item[JavaScript] libraries provide easy-to-use AJAX functions.
   \end{description}
 \end{frame}
@@ -255,13 +255,13 @@ xmlhttp.send();
 
 
 \begin{frame}{AJAX Example Explained}
-  \begin{enumerate}
-    \item XMLHttpRequest is a built-in class that provides AJAX functionality in JavaScript.
-    \item httpRequest.onreadystatechange should be set to a function to run every time something happens in our HTTP call.
-    \item httpRequest.open is called to initialize the request.
-    \item httpRequest.send is used to send the request to the server.
-    \item XMLHttpRequest.readyState changes when the state of the AJAX call changes. This triggers a call to httpRequest.onreadystatechange.
-  \end{enumerate}
+  \begin{description}
+    \item[XMLHttpRequest] is a built-in class that provides AJAX functionality in JavaScript.
+    \item[onreadystatechange] should be set to a function to run every time something happens in our HTTP call.
+    \item[open] is called to initialize the request.
+    \item[send] is used to send the request to the server.
+    \item[readyState] changes when the state of the AJAX call changes. This triggers a call to httpRequest.onreadystatechange.
+  \end{description}
 \end{frame}
 
 
